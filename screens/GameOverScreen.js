@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Button, Image} from "react-native";
+import { View, StyleSheet, Text, Button, Image} from "react-native";
 import ButtonStyle from "../components/ButtonStyle";
 import PText from '../components/text/PText';
 import H1Text from "../components/text/H1Text";
@@ -16,10 +16,20 @@ const GameOverScreen = (props) => {
 					resizeMode="cover"
 				/>
 			</View>
-			<PText>Numebr of rounds: {props.roundsNumber}</PText>
-			<PText>Number was: {props.userNumber}</PText>
+			<View style={styles.resultTextContainer}>
+				<PText style={styles.resultText}>
+					Your phone needed 
+					<PText style={styles.highlight}>{props.roundsNumber}</PText>
+					rounds to guess the number
+					<PText style={styles.highlight}>{props.userNumber}</PText>
+				</PText>
+			</View>
 			<ButtonStyle>
-				<Button title="New Game" onPress={props.onRestartgame}/>
+				<Button 
+					title="New Game" 
+					color={Colors.primary}
+					onPress={props.onRestartgame}
+				/>
 			</ButtonStyle>
 		</View>
 	);
@@ -43,6 +53,18 @@ const styles = StyleSheet.create({
 	image: {
 		width: '100%',
 		height: '100%',
+	},
+	resultTextContainer: {
+		width: '80%',
+		marginVertical: 15
+	},
+	resultText: {
+		textAlign: "center",
+		fontSize: 20
+	},
+	highlight: {
+		color: Colors.primary,
+		fontFamily: 'open-sans-bold'
 	}
 })
 

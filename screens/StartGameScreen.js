@@ -9,10 +9,11 @@ import {
 				Alert
 			} from 'react-native';
 import Card from '../components/Card';
-import ButtonStyle from '../components/ButtonStyle';
+import ButtonStyle from '../components/buttons/MainButton';
 import Colors from '../constants/colors';
 import Input from '../components/Input';
 import NumberContainer from '../components/NumberContainer';
+import MainButton from '../components/buttons/MainButton';
 
 const StartGameScreen = props =>{
     
@@ -60,9 +61,9 @@ const StartGameScreen = props =>{
 					<NumberContainer>
 						{selectedNumber}
 					</NumberContainer>
-					<ButtonStyle>
-                <Button title="START GAME" onPress={() => props.onStartGame(selectedNumber)}/>
-            </ButtonStyle>
+					<MainButton style={styles.startButton} onPress={() => props.onStartGame(selectedNumber)}>
+						START GAME
+          </MainButton>
 				</Card>
 		} 
 
@@ -84,18 +85,12 @@ const StartGameScreen = props =>{
 											value={enteredValue}
 									/>
 									<View style={styles.buttonContainer}>
-											<ButtonStyle style={styles.reset}>
-													<Button 
-														title="RESET"
-														color={Colors.accent} 
-														onPress={resetInputHandler}/>
-											</ButtonStyle>
-											<ButtonStyle style={styles.confirm}>
-													<Button 
-														title="CONFIRM" 
-														color={Colors.primary} 
-														onPress={confirmInputHandler}/>
-											</ButtonStyle>
+										<MainButton style={styles.reset} onPress={resetInputHandler}>
+											RESET
+										</MainButton>
+										<MainButton style={styles.confirm} onPress={confirmInputHandler}>
+											CONFIRM
+										</MainButton>
 									</View>
 							</Card>
 							{confirmedOutput}
@@ -127,8 +122,11 @@ const styles = StyleSheet.create({
     buttonContainer: {
         width: '100%',
         flexDirection: 'row',
-        paddingHorizontal: 15,
-    },
+        justifyContent: 'space-between',
+		},
+		startButton: {
+			backgroundColor: Colors.primary,
+		},
     confirm: {
         backgroundColor: Colors.primary,
     },
